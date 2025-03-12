@@ -1,0 +1,10 @@
+import re
+from playwright.sync_api import Page, expect
+
+def test_asn1decode(page: Page) -> None:
+    page.goto("https://emvlab.org/")
+    page.get_by_role("link", name="ASN1 decoder", exact=True).click()
+    page.locator("#myfile").click()
+    page.locator("#myfile").set_input_files("test_asn1.csr")
+    page.get_by_role("button", name="Decode File").click()
+    expect(page.locator("form")).to_contain_text("0 626: SEQUENCE { 4 346: SEQUENCE { 8 1: INTEGER 0 11 45: SEQUENCE { 13 13: SET { 15 11: SEQUENCE { 17 3: OBJECT IDENTIFIER organizationName (2 5 4 10) 22 4: UTF8String '1234' : } : } 28 13: SET { 30 11: SEQUENCE { 32 3: OBJECT IDENTIFIER organizationalUnitName (2 5 4 11) 37 4: UTF8String 'abcd' : } : } 43 13: SET { 45 11: SEQUENCE { 47 3: OBJECT IDENTIFIER commonName (2 5 4 3) 52 4: UTF8String 'Test' : } : } : } 58 290: SEQUENCE { 62 13: SEQUENCE { 64 9: OBJECT IDENTIFIER rsaEncryption (1 2 840 113549 1 1 1) 75 0: NULL : } 77 271: BIT STRING, encapsulates { 82 266: SEQUENCE { 86 257: INTEGER : 00 ED DE AF EE 4A C5 F6 44 36 33 9C DC AE A4 A2 : BB D8 20 AE 52 F0 81 69 EA 4C 3F 48 D6 4D 64 88 : D1 FC FB E8 EF 2A E6 69 FD 4A 09 67 31 A7 CB 94 : B5 45 1B C5 08 C2 D1 92 EF 3C 18 AA 4A CE 0D 1D : F0 2F B3 21 3C 46 13 8B 1F AE C5 9D AB 40 CB 27 : 13 54 B4 9D 31 FF 19 24 83 A8 72 D4 B0 E3 30 DE : 35 41 7B 89 F7 9E 52 E4 F9 17 C8 DC 1C A7 94 A3 : 10 41 81 80 39 2B 24 5A 64 77 38 33 B9 C2 8A 84 : [ Another 129 bytes skipped ]347 3: INTEGER 65537 : } : } : }352 0: [0] : Error: Object has zero length. : }354 13: SEQUENCE {356 9: OBJECT IDENTIFIER sha256WithRSAEncryption (1 2 840 113549 1 1 11)367 0: NULL : }369 257: BIT STRING : 06 0D C6 60 3D FE 8A B1 E7 42 CD 63 89 C8 57 E0 : 18 95 4D 41 09 FB D3 D0 E0 5E EA 2B E9 22 66 48 : D4 00 0C 97 82 CC 30 8B 7E 89 95 22 A7 E5 98 C3 : F2 66 62 08 57 F9 D9 B4 2E D7 9F 5D FB 72 15 0C : 71 CC AE C6 3B F6 D0 4C 86 74 B8 85 C4 DC DD E8 : 2C 61 86 E2 40 57 F7 99 16 71 E0 03 6A B2 D1 B3 : 6B D4 8A 39 B7 FC 85 1F 31 4F 05 CE 00 4E 3C F4 : 7B FB 89 42 D8 53 C8 19 A0 16 0C C9 56 A5 41 01 : [ Another 128 bytes skipped ] : }")
