@@ -2,7 +2,7 @@ import re
 from playwright.sync_api import Page, expect
 
 def test_asn1decode(page: Page) -> None:
-    page.goto("https://emvlab.org/")
+    page.goto("/")
     page.get_by_role("link", name="ASN1 decoder", exact=True).click()
     page.locator("#myfile").click()
     page.locator("#myfile").set_input_files("test_asn1.csr")

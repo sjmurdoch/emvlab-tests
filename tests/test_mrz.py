@@ -2,7 +2,7 @@ import re
 from playwright.sync_api import Page, expect
 
 def test_mrz(page: Page) -> None:
-    page.goto("https://emvlab.org/")
+    page.goto("/")
     page.get_by_role("link", name="mrz calculator", exact=True).click()
     page.locator("#name").click()
     page.locator("#name").clear()

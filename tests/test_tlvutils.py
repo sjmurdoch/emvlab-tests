@@ -2,7 +2,7 @@ import re
 from playwright.sync_api import Page, expect
 
 def test_tlvparsing(page: Page) -> None:
-    page.goto("https://emvlab.org/")
+    page.goto("/")
     page.get_by_role("link", name="TLV decoder", exact=True).click()
     page.get_by_role("textbox", name="TLV data to decode").click()
     page.get_by_role("textbox", name="TLV data to decode").fill("6F1A840E315041592E5359532E4444463031A5088801025F2D02656E")

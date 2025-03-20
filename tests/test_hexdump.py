@@ -2,7 +2,7 @@ import re
 from playwright.sync_api import Page, expect
 
 def test_hexdump(page: Page) -> None:
-    page.goto("https://emvlab.org/")
+    page.goto("/")
     page.get_by_role("link", name="hex dump", exact=True).click()
     page.locator("#myfile").click()
     page.locator("#myfile").set_input_files("test_asn1.csr")

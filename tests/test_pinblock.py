@@ -2,7 +2,7 @@ import re
 from playwright.sync_api import Page, expect
 
 def test_pinblock(page: Page) -> None:
-    page.goto("https://emvlab.org/")
+    page.goto("/")
     page.get_by_role("link", name="PIN translation tools").click()
     page.locator("#iepb").click()
     page.locator("#iepb").clear()

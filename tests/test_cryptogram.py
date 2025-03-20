@@ -2,7 +2,7 @@ import re
 from playwright.sync_api import Page, expect
 
 def test_cryptogram(page: Page) -> None:
-    page.goto("https://emvlab.org/")
+    page.goto("/")
     page.get_by_role("link", name="cryptogram calc", exact=True).click()
     page.get_by_role("textbox", name="ICC Master Key").click()
     page.get_by_role("textbox", name="ICC Master Key").fill("0123456789ABCDEF0123456789ABCDEF")

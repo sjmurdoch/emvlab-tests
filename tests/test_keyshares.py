@@ -2,7 +2,7 @@ import re
 from playwright.sync_api import Page, expect
 
 def test_split(page: Page) -> None:
-    page.goto("https://emvlab.org/")
+    page.goto("/")
     page.get_by_role("link", name="Keyshare generation tools").click()
     page.locator("#combined").click()
     page.locator("#combined").clear()
@@ -14,7 +14,7 @@ def test_split(page: Page) -> None:
     expect(page.locator("#combined")).to_contain_text("64720CD0719686B4F37D37B1A2499F6D")
 
 def test_combine(page: Page) -> None:
-    page.goto("https://emvlab.org/")
+    page.goto("/")
     page.get_by_role("link", name="Keyshare generation tools").click()
     page.locator("#combined").click()
     page.locator("#combined").clear()

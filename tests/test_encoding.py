@@ -2,7 +2,7 @@ import re
 from playwright.sync_api import Page, expect
 
 def test_encoding(page: Page) -> None:
-    page.goto("https://emvlab.org/")
+    page.goto("/")
     page.get_by_role("link", name="char converter").click()
     page.get_by_role("textbox", name="Data to convert").click()
     page.get_by_role("textbox", name="Data to convert").fill("61 62 63 64 31")
